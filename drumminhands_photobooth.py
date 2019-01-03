@@ -95,6 +95,7 @@ def input(events):
         if (event.type == KEYDOWN and event.key == K_SPACE):
             start_photobooth()
 
+
 #delete files in folder
 def clear_pics(channel):
 	files = glob.glob(config.file_path + '*')
@@ -368,6 +369,6 @@ show_image(real_path + "/intro.png");
 while True:
 	GPIO.output(led_pin,True); #turn on the light showing users they can push the button
 	input(pygame.event.get()) # press escape to exit pygame. Then press ctrl-c to exit python.
-	GPIO.wait_for_edge(btn_pin, GPIO.FALLING)
-	time.sleep(config.debounce) #debounce
-	start_photobooth()
+	# GPIO.wait_for_edge(btn_pin, GPIO.FALLING)
+	# time.sleep(config.debounce) #debounce
+	# start_photobooth()
