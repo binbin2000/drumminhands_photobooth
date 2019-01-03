@@ -8,7 +8,7 @@ import time
 import traceback
 from time import sleep
 import RPi.GPIO as GPIO
-import picamera # http://picamera.readthedocs.org/en/release-1.4/install2.html
+# import picamera # http://picamera.readthedocs.org/en/release-1.4/install2.html
 import atexit
 import sys
 import socket
@@ -207,21 +207,21 @@ def start_photobooth():
 	# clear the screen
 	clear_screen()
 
-	camera = picamera.PiCamera()
-	camera.vflip = False
-	camera.hflip = True # flip for preview, showing users a mirror image
-	camera.saturation = -100 # comment out this line if you want color images
-	camera.iso = config.camera_iso
+	# camera = picamera.PiCamera()
+	# camera.vflip = False
+	# camera.hflip = True # flip for preview, showing users a mirror image
+	# camera.saturation = -100 # comment out this line if you want color images
+	# camera.iso = config.camera_iso
 
 	pixel_width = 0 # local variable declaration
 	pixel_height = 0 # local variable declaration
 
 	if config.hi_res_pics:
-		camera.resolution = (high_res_w, high_res_h) # set camera resolution to high res
+		# camera.resolution = (high_res_w, high_res_h) # set camera resolution to high res
 	else:
 		pixel_width = 500 # maximum width of animated gif on tumblr
 		pixel_height = config.monitor_h * pixel_width // config.monitor_w
-		camera.resolution = (pixel_width, pixel_height) # set camera resolution to low res
+		# camera.resolution = (pixel_width, pixel_height) # set camera resolution to low res
 
 	################################# Begin Step 2 #################################
 
@@ -232,25 +232,25 @@ def start_photobooth():
 	if config.capture_count_pics:
 		try: # take the photos
 			for i in range(1,total_pics+1):
-				camera.hflip = True # preview a mirror image
-				camera.start_preview(resolution=(config.monitor_w, config.monitor_h)) # start preview at low res but the right ratio
+				# camera.hflip = True # preview a mirror image
+				# camera.start_preview(resolution=(config.monitor_w, config.monitor_h)) # start preview at low res but the right ratio
 				time.sleep(2) #warm up camera
 				GPIO.output(led_pin,True) #turn on the LED
 				filename = config.file_path + now + '-0' + str(i) + '.jpg'
-				camera.hflip = False # flip back when taking photo
-				camera.capture(filename)
+				# camera.hflip = False # flip back when taking photo
+				# camera.capture(filename)
 				print(filename)
 				GPIO.output(led_pin,False) #turn off the LED
-				camera.stop_preview()
+				# camera.stop_preview()
 				show_image(real_path + "/pose" + str(i) + ".png")
 				time.sleep(capture_delay) # pause in-between shots
 				clear_screen()
 				if i == total_pics+1:
 					break
 		finally:
-			camera.close()
+			# camera.close()
 	else:
-		camera.start_preview(resolution=(config.monitor_w, config.monitor_h)) # start preview at low res but the right ratio
+		# camera.start_preview(resolution=(config.monitor_w, config.monitor_h)) # start preview at low res but the right ratio
 		time.sleep(2) #warm up camera
 
 		try: #take the photos
@@ -262,8 +262,8 @@ def start_photobooth():
 				if i == total_pics-1:
 					break
 		finally:
-			camera.stop_preview()
-			camera.close()
+			# camera.stop_preview()
+			# camera.close()
 
 	########################### Begin Step 3 #################################
 
