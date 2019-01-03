@@ -249,19 +249,19 @@ def start_photobooth():
 					break
 		# finally:
 			# camera.close()
-	# else:
-	# 	# camera.start_preview(resolution=(config.monitor_w, config.monitor_h)) # start preview at low res but the right ratio
-	# 	time.sleep(2) #warm up camera
-  #
-	# 	try: #take the photos
-	# 		for i, filename in enumerate(camera.capture_continuous(config.file_path + now + '-' + '{counter:02d}.jpg')):
-	# 			GPIO.output(led_pin,True) #turn on the LED
-	# 			print(filename)
-	# 			time.sleep(capture_delay) # pause in-between shots
-	# 			GPIO.output(led_pin,False) #turn off the LED
-	# 			if i == total_pics-1:
-	# 				break
-		# finally:
+	else:
+		# camera.start_preview(resolution=(config.monitor_w, config.monitor_h)) # start preview at low res but the right ratio
+		time.sleep(2) #warm up camera
+
+		# try: #take the photos
+		# 	for i, filename in enumerate(camera.capture_continuous(config.file_path + now + '-' + '{counter:02d}.jpg')):
+		# 		GPIO.output(led_pin,True) #turn on the LED
+		# 		print(filename)
+		# 		time.sleep(capture_delay) # pause in-between shots
+		# 		GPIO.output(led_pin,False) #turn off the LED
+		# 		if i == total_pics-1:
+		# 			break
+		# # finally:
 			# camera.stop_preview()
 			# camera.close()
 
