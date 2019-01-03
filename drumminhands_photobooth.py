@@ -216,12 +216,12 @@ def start_photobooth():
 	pixel_width = 0 # local variable declaration
 	pixel_height = 0 # local variable declaration
 
-	if config.hi_res_pics:
-		# camera.resolution = (high_res_w, high_res_h) # set camera resolution to high res
-	else:
-		pixel_width = 500 # maximum width of animated gif on tumblr
-		pixel_height = config.monitor_h * pixel_width // config.monitor_w
-		# camera.resolution = (pixel_width, pixel_height) # set camera resolution to low res
+	# if config.hi_res_pics:
+	# 	camera.resolution = (high_res_w, high_res_h) # set camera resolution to high res
+	# else:
+	# 	pixel_width = 500 # maximum width of animated gif on tumblr
+	# 	pixel_height = config.monitor_h * pixel_width // config.monitor_w
+	# 	camera.resolution = (pixel_width, pixel_height) # set camera resolution to low res
 
 	################################# Begin Step 2 #################################
 
@@ -247,21 +247,21 @@ def start_photobooth():
 				clear_screen()
 				if i == total_pics+1:
 					break
-		finally:
+		# finally:
 			# camera.close()
-	else:
-		# camera.start_preview(resolution=(config.monitor_w, config.monitor_h)) # start preview at low res but the right ratio
-		time.sleep(2) #warm up camera
-
-		try: #take the photos
-			for i, filename in enumerate(camera.capture_continuous(config.file_path + now + '-' + '{counter:02d}.jpg')):
-				GPIO.output(led_pin,True) #turn on the LED
-				print(filename)
-				time.sleep(capture_delay) # pause in-between shots
-				GPIO.output(led_pin,False) #turn off the LED
-				if i == total_pics-1:
-					break
-		finally:
+	# else:
+	# 	# camera.start_preview(resolution=(config.monitor_w, config.monitor_h)) # start preview at low res but the right ratio
+	# 	time.sleep(2) #warm up camera
+  #
+	# 	try: #take the photos
+	# 		for i, filename in enumerate(camera.capture_continuous(config.file_path + now + '-' + '{counter:02d}.jpg')):
+	# 			GPIO.output(led_pin,True) #turn on the LED
+	# 			print(filename)
+	# 			time.sleep(capture_delay) # pause in-between shots
+	# 			GPIO.output(led_pin,False) #turn off the LED
+	# 			if i == total_pics-1:
+	# 				break
+		# finally:
 			# camera.stop_preview()
 			# camera.close()
 
